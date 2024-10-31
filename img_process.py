@@ -15,12 +15,12 @@ def gamma_correction(img: np.ndarray, gamma: float, channel: int, gray: bool=Fal
 
     return res
 
-def get_card_cnt(img: np.ndarray, white_lower: np.ndarray, white_upper: np.ndarray, smoothing: float=0.005):
+def get_card_cnt(img: np.ndarray, white_lower: np.ndarray, white_upper: np.ndarray, smoothing: float=0.003):
     
     gaussian = cv2.GaussianBlur(img, (0, 0), sigmaX=33)
     img = cv2.divide(img, gaussian, scale=255)
-    gamma_card = gamma_correction(img, 0.25, channel=1)
-    hsv_img = cv2.cvtColor(gamma_card, cv2.COLOR_BGR2HSV)
+    #gamma_card = gamma_correction(img, 0.25, channel=1)
+    hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
     mask = cv2.inRange(hsv_img, white_lower, white_upper)
     mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)))
 

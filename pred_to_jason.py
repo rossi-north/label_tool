@@ -55,7 +55,7 @@ for img_p in img_folder.glob('*.jpg'):
             continue
 
         img_anno.add_shape(label_name, card_cnt)
-        
+
     if len(img_anno.shapes) == 0:
         continue
 
