@@ -38,8 +38,6 @@ for img_p in img_folder.glob('*.jpg'):
     results = model.predict(img, retina_masks=True, agnostic_nms=True, verbose=False)[0]
     names = results.names
 
-    #print(len(img_anno.shapes))
-
     for i, bbox in enumerate(results.boxes):
         label_name = names[int(bbox.cls.item())]
         x1, y1, x2, y2 =bbox.xyxy.cpu().numpy().astype(np.int32)[0]
@@ -58,9 +56,7 @@ for img_p in img_folder.glob('*.jpg'):
 
         img_anno.add_shape(label_name, card_cnt)
         
-
     if len(img_anno.shapes) == 0:
         continue
 
     img_anno.save_to_json(img_p.with_suffix('.json'))
-    break
