@@ -15,7 +15,7 @@ def gamma_correction(img: np.ndarray, gamma: float, channel: int, gray: bool=Fal
 
     return res
 
-def get_card_cnt(img: np.ndarray, white_lower: np.ndarray, white_upper: np.ndarray, smoothing: float=0.003):
+def get_card_cnt(img: np.ndarray, white_lower: np.ndarray, white_upper: np.ndarray, smoothing: float=0.002):
     
     gaussian = cv2.GaussianBlur(img, (0, 0), sigmaX=33)
     img = cv2.divide(img, gaussian, scale=255)

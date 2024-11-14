@@ -35,7 +35,7 @@ for img_p in img_folder.glob('*.jpg'):
     img_anno = AnnotationBase(args.version, img_name, h, w)
 
     # inference image
-    results = model.predict(img, retina_masks=True, agnostic_nms=True, verbose=False)[0]
+    results = model.predict(cv2.GaussianBlur(img, (3, 3), 0), retina_masks=True, agnostic_nms=True, verbose=False)[0]
     names = results.names
 
     for i, bbox in enumerate(results.boxes):
